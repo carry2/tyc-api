@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" packages="">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" ignoreExceptions="false">
+			<PatternLayout
+				pattern="%n%-d{yyyy-MM-dd HH:mm:ss}%n[%p]-[Thread: %t]-[%C.%M()]: %m%n" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="/data/logs/cvs-tianyancha.log"
+			filePattern="/data/logs/cvs-tianyancha/$${date:yyyy-MM}/cvs-tianyancha-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout
+				pattern="%n%-d{yyyy-MM-dd HH:mm:ss}%n[%p]-[Thread: %t]-[%C.%M()]: %m%n" />
+			<SizeBasedTriggeringPolicy size="50MB" />
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<logger name="org.mybatis" level="debug" additivity="true" />
+		<logger name="cn.com.chinaventure" level="debug" additivity="true" />
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Root>
+	</Loggers>
+</Configuration>
